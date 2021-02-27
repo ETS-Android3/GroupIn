@@ -14,4 +14,8 @@
     <string name="groupin">GroupIn</string>
     <string name="your_projects">Your Projects</string>
     <string name="calendar">Calendar</string>
+    <string name="project_name">Project Name</string>
+    <string name="enter_project_name">Enter Project Name</string>
+    <string name="new_project">New Project</string>
+    <string name="create_project">Create Project</string>
 </resources>

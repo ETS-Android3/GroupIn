@@ -10,4 +10,8 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="item">Item</string>
+    <string name="create_a_new_project">Create a new Project</string>
+    <string name="groupin">GroupIn</string>
+    <string name="your_projects">Your Projects</string>
+    <string name="calendar">Calendar</string>
 </resources>

@@ -1,0 +1,4 @@
+com/example/groupin/BuildConfig.java
+ com.example.groupin.BuildConfig
+com/example/groupin/MainActivity.java
+ com.example.groupin.MainActivity

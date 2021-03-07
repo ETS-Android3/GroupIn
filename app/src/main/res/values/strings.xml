@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">GroupIn</string>
+
+<!--    for the drawer-->
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+<!-- for the navigation menu-->
+    <string name="nav_create_new_project">Create new Project</string>
+    <string name="nav_your_projects">Your Projects</string>
+    <string name="nav_your_tasks">Your Tasks</string>
+<!--    for navigation header-->
+    <string name="tag_line">Tagline</string>
+    <string name="logo_image">Logo Image</string>
 </resources>

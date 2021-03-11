@@ -9,4 +9,16 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+    <!--    for the drawer-->
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <!-- for the navigation menu-->
+    <string name="nav_create_new_project">Create new Project</string>
+    <string name="nav_your_projects">Your Projects</string>
+    <string name="nav_your_tasks">Your Tasks</string>
+    <string name="logout">Logout</string>
+    <!--    for navigation header-->
+    <string name="tag_line">Let\'s work together</string>
+    <string name="logo_image">Logo Image</string>
 </resources>

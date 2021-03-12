@@ -9,12 +9,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.groupin.ui.login.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
 //import android.widget.Toolbar;
 
@@ -61,6 +63,8 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.item4:
                     Toast.makeText(getApplicationContext(),"Logout",Toast.LENGTH_LONG).show();
                     drawerLayout.closeDrawer(GravityCompat.START);
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
                     break;
 
                 default:
@@ -69,4 +73,5 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         });
     }
+
 }

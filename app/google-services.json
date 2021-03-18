@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "694600494016",
+    "project_id": "groupin-5dc64",
+    "storage_bucket": "groupin-5dc64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694600494016:android:b9ff3bac1b22de5826f625",
+        "android_client_info": {
+          "package_name": "com.example.groupin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "694600494016-rf6p33l67bjek2rgpnmg0i5jfhgiglei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIv1jqN239Ohylc6GHKCKeiH1zeBU8wFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "694600494016-rf6p33l67bjek2rgpnmg0i5jfhgiglei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

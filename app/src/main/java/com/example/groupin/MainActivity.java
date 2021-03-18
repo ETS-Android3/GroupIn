@@ -1,7 +1,5 @@
 package com.example.groupin;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,16 +7,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.groupin.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
     EditText username, password, repassword;
     Button signup, signin;
     DBHelper myDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        /*NavHostFragment myNavHostFragment = (NavHostFragment) findViewById(R.id.my_nav_host_fragment);
+        NavInflater inflater = myNavHostFragment.getNavController().getNavInflater();
+        NavGraph graph = inflater.inflate(R.navigation.my_nav_graph);
+        myNavHostFragment.getNavController().setGraph(graph);*/
 
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
@@ -26,13 +31,13 @@ public class MainActivity extends AppCompatActivity {
         signup = (Button) findViewById(R.id.btnsignup);
         signin = (Button) findViewById(R.id.btnsignin);
         myDB = new DBHelper(this);
-
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String user = username.getText().toString();
                 String pass= password.getText().toString();
                 String repass = repassword.getText().toString();
+
 
                 if(user.equals("") || pass.equals("") || repass.equals(""))
                     Toast.makeText(MainActivity.this, "The username or password(s) are incorrect. Please try again", Toast.LENGTH_SHORT).show();
@@ -45,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "Registered successfully!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                 startActivity(intent);
+                                finish();
                             }else{
                                 Toast.makeText(MainActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
                             }
@@ -63,7 +69,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
+
 }

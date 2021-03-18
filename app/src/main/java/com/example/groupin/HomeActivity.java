@@ -1,20 +1,16 @@
 package com.example.groupin;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.widget.Toolbar;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.groupin.ui.login.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
@@ -25,15 +21,16 @@ public class HomeActivity extends AppCompatActivity {
     NavigationView nav;
     ActionBarDrawerToggle toggle;
     DrawerLayout drawerLayout;
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
         nav = (NavigationView)findViewById(R.id.navmenu);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
@@ -65,6 +62,7 @@ public class HomeActivity extends AppCompatActivity {
                     drawerLayout.closeDrawer(GravityCompat.START);
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
+                    finish();
                     break;
 
                 default:
@@ -73,5 +71,6 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         });
     }
+
 
 }

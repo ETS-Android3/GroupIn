@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
+
     tools:context=".ui.login.LoginActivity">
 
     <EditText
@@ -28,4 +29,6 @@
         android:text="Sign in"
         android:layout_marginTop="50dp"
         android:layout_below="@id/password_1"/>
+
+
 </RelativeLayout>

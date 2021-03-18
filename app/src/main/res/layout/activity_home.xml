@@ -6,7 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity"
     android:id="@+id/drawer"
+
     tools:openDrawer="start">
+
+
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -20,6 +23,9 @@
             android:background="@color/teal_700"
             app:titleTextColor="@color/white"/>
 
+
+
+
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -29,7 +35,8 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu"
         android:layout_gravity="start"
-
         />
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -50,6 +50,9 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.item2:
                     Toast.makeText(getApplicationContext(),"Your Projects",Toast.LENGTH_LONG).show();
                     drawerLayout.closeDrawer(GravityCompat.START);
+                    Intent toLists = new Intent(getApplicationContext(), ProjectList.class);
+                    startActivity(toLists);
+                    finish();
                     break;
 
                 case R.id.item3:

@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DBNAME = "Login.db";
@@ -24,9 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
      *                {@link #onUpgrade} will be used to upgrade the database; if the database is
      *                newer, {@link #onDowngrade} will be used to downgrade the database
      */
-    public DBHelper(Context context) {
-        super(context, "Login.db", null, 1);
-    }
+    public DBHelper(Context context) {super(context, DBNAME, null, 1);}
 
     /**
      * Called when the database is created for the first time. This is where the
@@ -37,7 +33,10 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase myDB) {
     myDB.execSQL("create Table users(username TEXT primary key, password TEXT)");
+
     }
+
+
 
     /**
      * Called when the database needs to be upgraded. The implementation

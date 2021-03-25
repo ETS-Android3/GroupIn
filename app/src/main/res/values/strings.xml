@@ -32,4 +32,10 @@
     <string name="enter_project_name">Enter Project Name</string>
     <string name="due_date_for_project">Due date for Project</string>
     <string name="start_date_for_project">Start date for project</string>
+
+    <string-array name="statusOpt">
+        <item>Not Started</item>
+        <item>In Progress</item>
+        <item>Complete</item>
+    </string-array>
 </resources>

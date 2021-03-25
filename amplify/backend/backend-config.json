@@ -1,0 +1,16 @@
+{
+  "auth": {
+    "groupindc24a733": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
+  "storage": {
+    "groupinres": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
+  }
+}

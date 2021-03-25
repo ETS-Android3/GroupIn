@@ -9,12 +9,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.groupin.ui.login.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
 //import android.widget.Toolbar;
 
@@ -30,11 +32,11 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        nav = (NavigationView)findViewById(R.id.navmenu);
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
+        nav = findViewById(R.id.navmenu);
+        drawerLayout = findViewById(R.id.drawer);
 
         toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -46,6 +48,8 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.item1:
                     Toast.makeText(getApplicationContext(),"Create new project",Toast.LENGTH_LONG).show();
                     drawerLayout.closeDrawer(GravityCompat.START);
+                    Intent intent = new Intent(HomeActivity.this, AddProject.class);
+                    startActivity(intent);
                     break;
 
                 case R.id.item2:
@@ -69,4 +73,6 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         });
     }
+
+
 }

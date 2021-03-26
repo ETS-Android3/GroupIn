@@ -7,17 +7,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.groupin.ui.login.LoginActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
 //import android.widget.Toolbar;
 
 public class HomeActivity extends AppCompatActivity {
@@ -25,6 +34,9 @@ public class HomeActivity extends AppCompatActivity {
     NavigationView nav;
     ActionBarDrawerToggle toggle;
     DrawerLayout drawerLayout;
+    FloatingActionButton fb;
+    RecyclerView rclView;
+    ArrayList<model> dataholder;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -32,15 +44,22 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         nav = findViewById(R.id.navmenu);
         drawerLayout = findViewById(R.id.drawer);
+        fb = findViewById(R.id.fb);
 
         toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        fb.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, AddProject.class);
+            startActivity(intent);
+        });
 
         nav.setNavigationItemSelectedListener(menuItem -> {
 
@@ -72,6 +91,24 @@ public class HomeActivity extends AppCompatActivity {
             }
             return true;
         });
+
+            rclView=findViewById(R.id.rclview);
+            rclView.setLayoutManager(new LinearLayoutManager(this));
+
+        Cursor cursor = new DBHelper(this).readalldata();
+        dataholder=new ArrayList<>();
+
+        while(cursor.moveToNext())
+        {
+            model obj = new model(cursor.getString(0),cursor.getString(1),cursor.getString(2));
+            dataholder.add(obj);
+        }
+
+        myAdapter adapter=new myAdapter(dataholder);
+        rclView.setAdapter(adapter);
+
+
+
     }
 
 

@@ -1,15 +1,11 @@
 package com.example.groupin;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -95,7 +91,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor.getCount() > 0;
     }
 
-    public void addProject(String projectname,String pstart,String pdue, String status ) {
+    public String addProject(String projectname,String pstart,String pdue, String status ) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues1 = new ContentValues();
 
@@ -104,7 +100,17 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues1.put("pend", pdue);
         contentValues1.put("status", status);
         long result=myDB.insert(TABLE1, null, contentValues1);
-        Log.d("add", "addProject: ");
+        if(result==-1)
+            return "Additon Failed";
+        else
+            return  "Added Successfully";
+    }
+
+    public Cursor readalldata(){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        String qry = "select projectname,pend,status from "+TABLE1+" order by projectid desc";
+        Cursor cursor = myDB.rawQuery(qry, null);
+        return cursor;
     }
 
 }

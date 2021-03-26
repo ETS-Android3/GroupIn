@@ -2,12 +2,14 @@ package com.example.groupin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class AddProject extends AppCompatActivity {
 
@@ -33,7 +35,10 @@ public class AddProject extends AppCompatActivity {
 
         add_project_btn.setOnClickListener(view -> {
             DBHelper myDB = new DBHelper(AddProject.this);
-            myDB.addProject(p_name.getText().toString().trim(),p_start.getText().toString().trim(),p_due.getText().toString().trim(), pstatus);
+            String res=myDB.addProject(p_name.getText().toString().trim(),p_start.getText().toString().trim(),p_due.getText().toString().trim(), pstatus);
+            Toast.makeText(getApplicationContext(), res, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(AddProject.this, HomeActivity.class);
+            startActivity(intent);
         });
     }
 }

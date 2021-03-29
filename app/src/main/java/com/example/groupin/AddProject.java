@@ -15,23 +15,24 @@ public class AddProject extends AppCompatActivity {
 
     EditText p_name,p_start, p_due;
     Button add_project_btn;
-
+    Spinner statusSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_project);
 
-        Spinner statusSpinner= findViewById(R.id.pstatus);
-        ArrayAdapter <String> myAdapter = new ArrayAdapter<>(AddProject.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.statusOpt));
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        statusSpinner.setAdapter(myAdapter);
+        statusSpinner= findViewById(R.id.pstatus);
+        ArrayAdapter <String> choose = new ArrayAdapter<>(AddProject.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.statusOpt));
+        choose.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        statusSpinner.setAdapter(choose);
+        String pstatus = statusSpinner.getSelectedItem().toString();
 
         p_name = findViewById(R.id.enter_name);
         p_start = findViewById(R.id.enter_pstart);
         p_due = findViewById(R.id.enter_pdue);
         add_project_btn = findViewById(R.id.add_p);
-        String pstatus = statusSpinner.getSelectedItem().toString();
+
 
         add_project_btn.setOnClickListener(view -> {
             DBHelper myDB = new DBHelper(AddProject.this);

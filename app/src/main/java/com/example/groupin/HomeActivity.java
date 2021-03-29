@@ -100,11 +100,11 @@ public class HomeActivity extends AppCompatActivity {
 
         while(cursor.moveToNext())
         {
-            model obj = new model(cursor.getString(0),cursor.getString(1),cursor.getString(2));
+            model obj = new model(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3));
             dataholder.add(obj);
         }
 
-        myAdapter adapter=new myAdapter(dataholder);
+        myAdapter adapter=new myAdapter(dataholder,getApplicationContext());
         rclView.setAdapter(adapter);
 
 

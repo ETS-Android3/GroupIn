@@ -32,6 +32,20 @@
     <string name="enter_project_name">Enter Project Name</string>
     <string name="due_date_for_project">Due date for Project</string>
     <string name="start_date_for_project">Start date for project</string>
+    <string name="project_name">Project Name</string>
+    <string name="project_due_date">Project Due Date</string>
+    <string name="project_status">Project Status</string>
+    <string name="taskname">TaskName</string>
+    <string name="taskdue">taskdue</string>
+    <string name="taskstatus">taskstatus</string>
+    <string name="taskmember">taskmember</string>
+    <string name="new_task">New Task</string>
+    <string name="due_date">Due Date</string>
+    <string name="enter_the_task_name">Enter the task name</string>
+    <string name="member_name">member name</string>
+    <string name="assigned_to">Assigned to</string>
+    <string name="add_task">Add Task</string>
+    <string name="todo">TODO</string>
 
     <string-array name="statusOpt">
         <item>Not Started</item>

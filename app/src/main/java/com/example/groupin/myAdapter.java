@@ -1,5 +1,8 @@
 package com.example.groupin;
 
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +15,12 @@ import java.util.ArrayList;
 
 public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewholder>{
    ArrayList<model> dataholder;
+   Context context;
 
-    public myAdapter(ArrayList<model> dataholder) {
+    public myAdapter(ArrayList<model> dataholder, Context context) {
+
         this.dataholder = dataholder;
+        this.context = context;
     }
 
     @NonNull
@@ -26,9 +32,24 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myViewholder>{
 
     @Override
     public void onBindViewHolder(@NonNull myViewholder holder, int position) {
+
+        final model temp= dataholder.get(position);
+        String p=temp.getPid();
+
         holder.dname.setText(dataholder.get(position).getPname());
         holder.ddue.setText(dataholder.get(position).getPdue());
         holder.dstatus.setText(dataholder.get(position).getPstatus());
+
+        holder.dname.setOnClickListener(v -> {
+            Intent intent = new Intent(context,Tasks.class);
+            Log.d(p, "passed value");
+            intent.putExtra("pid",p);
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        });
+
+
     }
 
     @Override

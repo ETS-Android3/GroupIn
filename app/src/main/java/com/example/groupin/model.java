@@ -2,12 +2,21 @@ package com.example.groupin;
 
 public class model {
 
-    String pname, pdue,pstatus;
+    String pid,pname, pdue,pstatus;
 
-    public model(String pname, String pdue, String pstatus) {
+    public model(String pid,String pname, String pdue, String pstatus) {
+        this.pid = pid;
         this.pname = pname;
         this.pdue = pdue;
         this.pstatus = pstatus;
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
     public String getPname() {

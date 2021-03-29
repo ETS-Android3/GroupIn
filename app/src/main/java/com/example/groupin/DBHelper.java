@@ -38,7 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase myDB) {
         String table1 = "create Table "+TABLE1+"(projectid INTEGER primary key autoincrement, projectname TEXT,pstart TEXT,pend TEXT, status TEXT)";
-        String table2 = "create Table "+TABLE2+"(taskid INTEGER primary key autoincrement, projectid INTEGER, task TEXT,duedate TEXT, member TEXT)";
+        String table2 = "create Table "+TABLE2+"(taskid INTEGER primary key autoincrement, projectid INTEGER, task TEXT,duedate TEXT, member TEXT, tstatus TEXT)";
         myDB.execSQL("create Table users(username TEXT primary key, password TEXT)");
         myDB.execSQL(table1);
         myDB.execSQL(table2);
@@ -106,9 +106,35 @@ public class DBHelper extends SQLiteOpenHelper {
             return  "Added Successfully";
     }
 
+    public String addTask(String taskname, String tdue, String tmem, String tstatus, int pid){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues contentValues2 = new ContentValues();
+
+        contentValues2.put("projectid",pid);
+        contentValues2.put("task",taskname);
+        contentValues2.put("duedate",tdue);
+        contentValues2.put("member",tmem);
+        contentValues2.put("tstatus",tstatus);
+
+        long result=myDB.insert(TABLE1, null, contentValues2);
+
+        if(result==-1)
+            return "Additon Failed";
+        else
+            return  "Added Successfully";
+
+    }
+
     public Cursor readalldata(){
         SQLiteDatabase myDB = this.getWritableDatabase();
-        String qry = "select projectname,pend,status from "+TABLE1+" order by projectid desc";
+        String qry = "select projectid,projectname,pend,status from "+TABLE1+" order by projectid desc";
+        Cursor cursor = myDB.rawQuery(qry, null);
+        return cursor;
+    }
+
+    public Cursor readallTasks(int pid){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        String qry = "select taskid,task,duedate,member,tstatus from "+TABLE2+" where projectid="+pid;
         Cursor cursor = myDB.rawQuery(qry, null);
         return cursor;
     }

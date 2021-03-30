@@ -5,10 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DBNAME = "Login.db";
+    public static final String TABLE1 = "projects";
+    public static final String TABLE2 = "tasks";
 
     /**
      * Create a helper object to create, open, and/or manage a database.
@@ -22,7 +25,9 @@ public class DBHelper extends SQLiteOpenHelper {
      *                {@link #onUpgrade} will be used to upgrade the database; if the database is
      *                newer, {@link #onDowngrade} will be used to downgrade the database
      */
-    public DBHelper(Context context) {super(context, DBNAME, null, 1);}
+    public DBHelper(Context context) {
+        super(context, "Login.db", null, 1);
+    }
 
     /**
      * Called when the database is created for the first time. This is where the
@@ -32,11 +37,12 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase myDB) {
-    myDB.execSQL("create Table users(username TEXT primary key, password TEXT)");
-
+        String table1 = "create Table "+TABLE1+"(projectid INTEGER primary key autoincrement, projectname TEXT,pstart TEXT,pend TEXT, status TEXT)";
+        String table2 = "create Table "+TABLE2+"(taskid INTEGER primary key autoincrement, projectid INTEGER, task TEXT,duedate TEXT, member TEXT, tstatus TEXT)";
+        myDB.execSQL("create Table users(username TEXT primary key, password TEXT)");
+        myDB.execSQL(table1);
+        myDB.execSQL(table2);
     }
-
-
 
     /**
      * Called when the database needs to be upgraded. The implementation
@@ -60,7 +66,9 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase myDB, int i, int j) {
-    myDB.execSQL("drop Table if exists users");
+        myDB.execSQL("drop Table if exists users");
+        myDB.execSQL("drop table if exists "+TABLE1);
+        myDB.execSQL("drop table if exists "+TABLE2);
     }
 
     public Boolean insertData(String username, String password){
@@ -69,28 +77,66 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("username", username);
         contentValues.put("password", password);
         long result = myDB.insert("users", null, contentValues);
-        if(result == -1){
-            return false;
-        }else{
-            return true;
-        }
+        return result != -1;
     }
     public Boolean checkusername(String username){
         SQLiteDatabase myDB = this.getWritableDatabase();
         Cursor cursor = myDB.rawQuery("Select * from users where username = ?", new String[] {username});
-        if(cursor.getCount()>0){
-            return true;
-        }else{
-            return false;
-        }
+        return cursor.getCount() > 0;
     }
 
     public  Boolean checkusernamepassword(String username, String password){
         SQLiteDatabase myDB = this.getWritableDatabase();
         Cursor cursor = myDB.rawQuery("Select * from users where username = ? and password = ?", new String[] {username,password});
-        if (cursor.getCount()>0)
-            return true;
-        else
-            return false;
+        return cursor.getCount() > 0;
     }
+
+    public String addProject(String projectname,String pstart,String pdue, String status ) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues contentValues1 = new ContentValues();
+
+        contentValues1.put("projectname", projectname);
+        contentValues1.put("pstart", pstart);
+        contentValues1.put("pend", pdue);
+        contentValues1.put("status", status);
+        long result=myDB.insert(TABLE1, null, contentValues1);
+        if(result==-1)
+            return "Additon Failed";
+        else
+            return  "Added Successfully";
+    }
+
+    public String addTask(String taskname, String tdue, String tmem, String tstatus, int pid){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        ContentValues contentValues2 = new ContentValues();
+
+        contentValues2.put("projectid",pid);
+        contentValues2.put("task",taskname);
+        contentValues2.put("duedate",tdue);
+        contentValues2.put("member",tmem);
+        contentValues2.put("tstatus",tstatus);
+
+        long result=myDB.insert(TABLE1, null, contentValues2);
+
+        if(result==-1)
+            return "Additon Failed";
+        else
+            return  "Added Successfully";
+
+    }
+
+    public Cursor readalldata(){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        String qry = "select projectid,projectname,pend,status from "+TABLE1+" order by projectid desc";
+        Cursor cursor = myDB.rawQuery(qry, null);
+        return cursor;
+    }
+
+    public Cursor readallTasks(int pid){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        String qry = "select taskid,task,duedate,member,tstatus from "+TABLE2+" where projectid="+pid;
+        Cursor cursor = myDB.rawQuery(qry, null);
+        return cursor;
+    }
+
 }

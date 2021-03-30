@@ -84,6 +84,8 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.item4:
                     Toast.makeText(getApplicationContext(),"Logout",Toast.LENGTH_LONG).show();
                     drawerLayout.closeDrawer(GravityCompat.START);
+                    Intent intent4 = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent4);
                     break;
 
                 default:

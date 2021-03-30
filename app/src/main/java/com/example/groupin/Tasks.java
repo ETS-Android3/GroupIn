@@ -14,7 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 public class Tasks extends AppCompatActivity {
-    int recPid;
+    String recPid;
     RecyclerView rctView;
     ArrayList<modelTask> datahold;
     FloatingActionButton fbt;
@@ -26,7 +26,7 @@ public class Tasks extends AppCompatActivity {
 
         fbt = findViewById(R.id.add_t);
 
-        recPid =Integer.parseInt( getIntent().getStringExtra("pid"));
+        recPid =getIntent().getStringExtra("pid");
 
         rctView=findViewById(R.id.rctView);
         rctView.setLayoutManager(new LinearLayoutManager(this));

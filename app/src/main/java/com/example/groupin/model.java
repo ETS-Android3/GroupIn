@@ -1,5 +1,7 @@
 package com.example.groupin;
 
+import android.util.Log;
+
 public class model {
 
     String pid,pname, pdue, pstatus;
@@ -12,6 +14,7 @@ public class model {
     }
 
     public String getPid() {
+        Log.d(pid, "getPid: ");
         return pid;
     }
 

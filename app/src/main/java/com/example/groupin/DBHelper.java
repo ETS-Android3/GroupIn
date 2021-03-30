@@ -107,17 +107,17 @@ public class DBHelper extends SQLiteOpenHelper {
             return  "Project Successfully Created";
     }
 
-    public String addTask(String taskname, String tdue, String tmem, String tstatus, int pid){
+    public String addTask(String taskname, String tdue, String tmem, String tstatus, String pid){
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues2 = new ContentValues();
 
-        contentValues2.put("projectid",pid);
+        contentValues2.put("projectid",Integer.parseInt(pid));
         contentValues2.put("task",taskname);
         contentValues2.put("duedate",tdue);
         contentValues2.put("member",tmem);
         contentValues2.put("tstatus",tstatus);
 
-        long result=myDB.insert(TABLE1, null, contentValues2);
+        long result=myDB.insert(TABLE2, null, contentValues2);
 
         if(result==-1)
             return "Additon Failed";
@@ -133,9 +133,9 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public Cursor readallTasks(int pid){
+    public Cursor readallTasks(String pid){
         SQLiteDatabase myDB = this.getWritableDatabase();
-        String qry = "select taskid,task,duedate,member,tstatus from "+TABLE2+" where projectid="+pid;
+        String qry = "select taskid,task,duedate,member,tstatus from "+TABLE2+" where projectid="+Integer.parseInt(pid);
         Cursor cursor = myDB.rawQuery(qry, null);
         return cursor;
     }

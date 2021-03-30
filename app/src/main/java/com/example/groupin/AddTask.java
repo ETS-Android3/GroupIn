@@ -15,7 +15,7 @@ public class AddTask extends AppCompatActivity {
     EditText task_name,task_due,task_member;
     Spinner tstatusSpinner;
     Button btn_task;
-    int projectid;
+    String projectid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class AddTask extends AppCompatActivity {
         tstatusSpinner.setAdapter(tchoose);
         String task_status = tstatusSpinner.getSelectedItem().toString();
 
-        projectid=Integer.parseInt( getIntent().getStringExtra("pid"));
+        projectid=getIntent().getStringExtra("pid");
         task_name = findViewById(R.id.enter_name);
         task_due = findViewById(R.id.enter_tend);
         task_member = findViewById(R.id.enter_tmem);

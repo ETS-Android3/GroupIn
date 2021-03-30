@@ -16,20 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amplifyframework.AmplifyException;
-import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
-import com.amplifyframework.core.Amplify;
-import com.amplifyframework.storage.options.StorageDownloadFileOptions;
-import com.amplifyframework.storage.options.StorageUploadFileOptions;
-import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+
 
 import java.io.BufferedWriter;
 import java.io.File;

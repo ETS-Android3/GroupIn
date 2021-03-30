@@ -11,10 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.amplifyframework.AmplifyException;
-import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
-import com.amplifyframework.core.Amplify;
-import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+
 import com.example.groupin.ui.login.LoginActivity;
 
 import java.io.BufferedWriter;
@@ -31,18 +28,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        try {
-            // Add these lines to add the AWSCognitoAuthPlugin and AWSS3StoragePlugin plugins
-            Amplify.addPlugin(new AWSCognitoAuthPlugin());
-            Amplify.addPlugin(new AWSS3StoragePlugin());
-            Amplify.configure(getApplicationContext());
-
-            Log.i("MyAmplifyApp", "Initialized Amplify");
-        } catch (AmplifyException error) {
-            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
-        }
-
-        downloadFile();
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         repassword = (EditText) findViewById(R.id.repassword);
@@ -64,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
                         Boolean checkuser = myDB.checkusername(user);
                         if (checkuser == false){
                             Boolean insert = myDB.insertData(user, pass);
-                            uploadFile("Login.db");
                             if(insert == true){
                                 Toast.makeText(MainActivity.this, "Registered successfully!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
@@ -93,23 +77,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public void uploadFile(String fileName) {
-        File exampleFile = new File(getApplicationContext().getDatabasePath("Login.db").getPath());
 
-        Amplify.Storage.uploadFile(
-                fileName,
-                exampleFile,
-                result -> Log.i("MyAmplifyApp", "Successfully uploaded: " + result.getKey()),
-                storageFailure -> Log.e("MyAmplifyApp", "Upload failed", storageFailure)
-        );
-    }
-
-    public void downloadFile(){
-        Amplify.Storage.downloadFile(
-                "Login.db",
-                new File(getApplicationContext().getDatabasePath("Login.db") + ""),
-                result -> Log.i("MyAmplifyApp", "Successfully downloaded: " + result.getFile().getName()),
-                error -> Log.e("MyAmplifyApp",  "Download Failure", error)
-        );
-    }
 }

@@ -37,9 +37,9 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase myDB) {
-        String table1 = "create Table "+TABLE1+"(projectid INTEGER primary key autoincrement, projectname TEXT,pstart TEXT,pend TEXT, status TEXT)";
+        String table1 = "create Table "+TABLE1+"(projectid INTEGER primary key autoincrement, projectname TEXT,pstart TEXT,pend TEXT, status BOOLEAN)";
         String table2 = "create Table "+TABLE2+"(taskid INTEGER primary key autoincrement, projectid INTEGER, task TEXT,duedate TEXT, member TEXT, tstatus TEXT)";
-        myDB.execSQL("create Table users(username TEXT primary key, password TEXT)");
+        myDB.execSQL("create Table users(username TEXT primary key, password TEXT, projectid INTEGER, foreign key (projectid) references "+TABLE1+"(projectid))");
         myDB.execSQL(table1);
         myDB.execSQL(table2);
     }
@@ -91,19 +91,20 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor.getCount() > 0;
     }
 
-    public String addProject(String projectname,String pstart,String pdue, String status ) {
+    public String addProject(String projectname,String pstart,String pdue) {
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues1 = new ContentValues();
 
         contentValues1.put("projectname", projectname);
         contentValues1.put("pstart", pstart);
         contentValues1.put("pend", pdue);
-        contentValues1.put("status", status);
+        contentValues1.put("status", false);
+
         long result=myDB.insert(TABLE1, null, contentValues1);
         if(result==-1)
-            return "Additon Failed";
+            return "Project Creation Failed";
         else
-            return  "Added Successfully";
+            return  "Project Successfully Created";
     }
 
     public String addTask(String taskname, String tdue, String tmem, String tstatus, int pid){

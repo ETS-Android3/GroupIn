@@ -2,7 +2,7 @@ package com.example.groupin;
 
 public class model {
 
-    String pid,pname, pdue,pstatus;
+    String pid,pname, pdue, pstatus;
 
     public model(String pid,String pname, String pdue, String pstatus) {
         this.pid = pid;
@@ -36,7 +36,12 @@ public class model {
     }
 
     public String getPstatus() {
-        return pstatus;
+        if(this.pstatus=="1"){
+            return "Complete";
+        }else{
+            return "Incomplete";
+        }
+
     }
 
     public void setPstatus(String pstatus) {

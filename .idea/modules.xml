@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Banana-Code.iml" filepath="$PROJECT_DIR$/.idea/Banana-Code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GroupIn.iml" filepath="$PROJECT_DIR$/.idea/modules/GroupIn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GroupIn.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GroupIn.app.iml" />
     </modules>
   </component>
 </project>
